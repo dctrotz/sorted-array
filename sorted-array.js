@@ -1,12 +1,16 @@
 var SortedArray = (function () {
     var SortedArray = defclass({
-        constructor: function (array, compare) {
-            this.array   = [];
+        constructor: function (array, compare, isSorted = false) {
             this.compare = compare || compareDefault;
-            var length   = array.length;
-            var index    = 0;
+            if(!isSorted) {
+              this.array   = [];
+              var length   = array.length;
+              var index    = 0;
 
-            while (index < length) this.insert(array[index++]);
+              while (index < length) this.insert(array[index++]);
+            } else {
+              this.array = array;
+            }
         },
         insert: function (element) {
             var array   = this.array;
